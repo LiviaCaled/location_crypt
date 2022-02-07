@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
+import time
 import crypt_lib
+import gps
 
 def print_main_menu():
     print("q: (or 0) Quit program")
     print("e: Encrypt current timestamp and given location")
     print("d: Decrypt hash")
 
-i
+
 if __name__ == "__main__":
     print("Location and timestamp encryption")
 
@@ -14,8 +16,9 @@ if __name__ == "__main__":
         print_main_menu()
         choice = input("> ")
         if choice == "e":
-            encrypt()
+            result = crypt_lib.encrypt(time.mktime(time.localtime()), gps.get_location()) 
+            print("Location hash: %s" % result)
         if choice == "d":
-            decrypt()
+            result = crypt_lib.decrypt()
         if choice in ("0", "q"):
             break
